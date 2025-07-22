@@ -1,0 +1,641 @@
+/* ==========================================================================
+   1. Base & Typography Styles (With Glassmorphism Background)
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Hind Siliguri', sans-serif;
+    /* Glassmorphism এর জন্য ব্যাকগ্রাউন্ড পরিবর্তন করা হয়েছে */
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    background-attachment: fixed;
+    color: #3f3f46;
+    transition: background 0.4s ease, color 0.4s ease;
+}
+
+/* ক্লাস নোটের কন্টেন্টের জন্য সাধারণ স্টাইল */
+.prose {
+    font-family: 'Georgia', serif;
+    line-height: 1.6;
+    color: #333; /* লাইট মোডে সাধারণ লেখার রঙ */
+}
+
+.prose h1 {
+    font-family: 'Georgia', serif;
+    text-align: center;
+    font-size: 2.2em;
+    color: #2c3e50; /* লাইট মোডে h1 এর রঙ */
+    margin-bottom: 10px;
+}
+
+.prose h2 {
+    font-family: 'Georgia', serif;
+    text-align: center;
+    font-size: 1.5em;
+    font-style: italic;
+    color: #555; /* লাইট মোডে h2 এর রঙ */
+    margin-bottom: 20px;
+}
+
+.prose p {
+    text-align: justify;
+    font-size: 1.1em;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.quote-text {
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: 14px;
+    font-style: italic;
+    color: rgba(82, 82, 91, 0.6);
+    text-align: center;
+    line-height: 1.8;
+    transition: color 0.4s ease;
+}
+
+
+/* ==========================================================================
+   2. Component Styles (Glassmorphism Applied)
+   ========================================================================== */
+
+/* --- Buttons --- */
+.nav-button {
+    transition: all 0.3s ease-in-out;
+    color: #52525b; /* Zinc 600 */
+    background-color: rgba(228, 228, 231, 0.7); /* হালকা স্বচ্ছ */
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.nav-button.active,
+.nav-button:hover {
+    color: #fafafa; /* Zinc 50 */
+    background-color: #71717a; /* Zinc 500 */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+.filter-button {
+    transition: all 0.3s ease;
+    border: 1px solid rgba(212, 212, 216, 0.8); /* Zinc 300 */
+    color: #52525b; /* Zinc 600 */
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.filter-button.active,
+.filter-button:hover {
+    background-color: #a1a1aa; /* Zinc 400 */
+    color: white;
+    border-color: #a1a1aa;
+}
+
+/* --- Card (Glassmorphism Effect) --- */
+.card {
+    /* Glass Effect */
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* For Safari */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+    
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.4s ease, border-color 0.4s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 36px 0 rgba(31, 38, 135, 0.25);
+}
+
+/* --- MCQ (Multiple Choice Questions) --- */
+.mcq-question-title {
+    font-weight: 600; /* semibold */
+    margin-bottom: 1rem; /* mb-4 */
+    color: #27272a;
+}
+
+.mcq-option {
+    cursor: pointer;
+    /* Glass Effect for options */
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #3f3f46;
+    transition: all 0.3s ease;
+}
+
+.mcq-option:hover {
+    background: rgba(255, 255, 255, 0.4);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.mcq-option.correct {
+    background-color: rgba(236, 253, 245, 0.8); /* Emerald 50 with opacity */
+    border-color: #10b981; /* Emerald 500 */
+    color: #059669; /* Emerald 600 */
+    transform: scale(1.02);
+}
+
+.mcq-option.incorrect {
+    background-color: rgba(254, 242, 242, 0.8); /* Red 50 with opacity */
+    border-color: #f87171; /* Red 400 */
+    color: #dc2626; /* Red 600 */
+}
+
+/* --- Accordion (Written Questions) --- */
+.question-accordion-header {
+    width: 100%;
+    text-align: left;
+    padding: 1rem;
+    font-weight: 600; /* semibold */
+    color: #3f3f46;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s, color 0.3s;
+    background-color: transparent; /* Make header transparent */
+}
+
+.question-accordion-header:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.question-accordion-header .transform_plus {
+    transition: transform 0.4s ease-in-out;
+}
+
+.question-accordion-header.active .transform_plus {
+    transform: rotate(45deg);
+}
+
+.question-accordion-body {
+    padding: 0 1.5rem; /* 24px horizontal padding */
+    max-height: 0;
+    overflow: hidden;
+    background-color: transparent; /* Make body transparent */
+    color: #3f3f46;
+    transition: max-height 0.4s ease-in-out;
+}
+
+.answer-content {
+    max-width: 80ch; /* টেক্সটের প্রস্থ সীমাবদ্ধ করে */
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 1rem;
+}
+
+.question-accordion-body .whitespace-pre-line {
+    white-space: pre-line;
+    line-height: 1.8;
+}
+
+/* --- Chart --- */
+.chart-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 350px;
+    max-height: 450px;
+}
+
+@media (min-width: 768px) {
+    .chart-container {
+        height: 400px;
+    }
+}
+
+
+/* ==========================================================================
+   3. Animations
+   ========================================================================== */
+
+.fade-in {
+    animation: subtleFadeUp 0.6s ease-out;
+}
+
+@keyframes subtleFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ==========================================================================
+   4. Dark Mode Styles
+   ========================================================================== */
+
+body.dark {
+    background: linear-gradient(135deg, #232526 0%, #414345 100%);
+    color: #e4e4e7;
+}
+
+/* --- Dark Mode: Typography --- */
+.dark header h1,
+.dark .prose h1,
+.dark .prose h2,
+.dark .prose h3,
+.dark .prose h4,
+.dark .prose strong {
+    color: #f9fafb;
+}
+
+.dark header p,
+.dark footer p {
+    color: #a1a1aa;
+}
+
+.dark #intro-section h2,
+.dark #chart-section h3 {
+    color: #f4f4f5;
+}
+
+.dark #intro-section p {
+    color: #d4d4d8;
+}
+
+.dark .quote-text {
+    color: rgba(161, 161, 170, 0.7);
+}
+
+.dark .prose {
+    color: #d1d5db;
+}
+
+.dark .prose a {
+    color: #93c5fd;
+}
+
+.dark .prose blockquote {
+    border-left-color: #4b5563;
+    color: #9ca3af;
+}
+
+.dark .prose code {
+    color: #f9fafb;
+}
+
+/* --- Dark Mode: Components --- */
+.dark .card {
+    background: rgba(40, 40, 42, 0.35);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.dark .nav-button {
+    color: #d4d4d8;
+    background-color: rgba(63, 63, 70, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark .nav-button.active,
+.dark .nav-button:hover {
+    color: #18181b;
+    background-color: #fafafa;
+}
+
+.dark .filter-button {
+    border-color: rgba(82, 82, 91, 0.8);
+    color: #d4d4d8;
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.dark .filter-button.active,
+.dark .filter-button:hover {
+    background-color: #71717a;
+    color: white;
+    border-color: #71717a;
+}
+
+.dark #year-filter {
+    background-color: rgba(63, 63, 70, 0.5);
+    color: #e4e4e7;
+    border-color: rgba(82, 82, 91, 0.8);
+}
+
+.dark .mcq-question-title {
+    color: #f4f4f5;
+}
+
+.dark .mcq-option {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: #d4d4d8;
+}
+
+.dark .mcq-option:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.dark .mcq-option.correct {
+    background-color: rgba(20, 83, 45, 0.7); /* Darker Emerald */
+    border-color: #4ade80;
+    color: #bbf7d0;
+}
+
+.dark .mcq-option.incorrect {
+    background-color: rgba(127, 29, 29, 0.7); /* Darker Red */
+    border-color: #f87171;
+    color: #fecaca;
+}
+
+.dark #mcq-result-section p {
+    color: #e4e4e7;
+}
+
+.dark #mcq-result-section #mcq-score {
+    color: #4ade80;
+}
+
+.dark .question-accordion-header {
+    color: #f4f4f5;
+    background-color: transparent;
+}
+
+.dark .question-accordion-header:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.dark .question-accordion-body {
+    background-color: transparent;
+    color: #d4d4d8;
+}
+
+.dark .question-accordion-body .prose {
+    color: #d1d5db;
+}
+
+.dark .question-accordion-body .prose h1 {
+    color: #f0f0f0;
+}
+
+.dark .question-accordion-body .prose h2 {
+    color: #cccccc;
+}
+
+/* ==========================================================================
+   5. Glassmorphism Table Styles (NEW & IMPROVED)
+   ========================================================================== */
+
+/* This wrapper ensures the table can scroll on small screens */
+.prose .table-wrapper {
+    overflow-x: auto;
+    width: 100%;
+}
+
+.prose table {
+    width: 100%;
+    min-width: 600px; 
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05));
+    backdrop-filter: blur(12px) saturate(160%);
+    -webkit-backdrop-filter: blur(12px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 0.75rem;
+    box-shadow:
+        inset 0 0 0.5rem rgba(255, 255, 255, 0.1),
+        0 8px 32px rgba(31, 38, 135, 0.25),
+        0 0 4px rgba(255, 255, 255, 0.1);
+    transition: all 0.4s ease;
+}
+
+.prose th,
+.prose td {
+    padding: 0.85rem 1.25rem;
+    text-align: left;
+    border-bottom: 1px solid;
+    background-color: transparent;
+}
+
+/* Light Mode FIX: Lighter header background and solid borders */
+.prose th {
+    color: #111827;
+    font-weight: 600;
+    background-color: rgba(0, 0, 0, 0.02); /* Made the header even lighter */
+    border-bottom-color: #d1d5db; 
+}
+
+.prose td {
+    color: #374151;
+    border-bottom-color: #e5e7eb;
+}
+
+.prose tr:last-child th,
+.prose tr:last-child td {
+    border-bottom: none;
+}
+
+/* Dark Mode */
+.dark .prose table {
+    background: linear-gradient(135deg, rgba(50,50,55,0.25), rgba(20,20,20,0.15));
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow:
+        inset 0 0 0.5rem rgba(255, 255, 255, 0.08),
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        0 0 4px rgba(255,255,255,0.08);
+}
+
+.dark .prose th {
+    color: #f9fafb;
+    background-color: rgba(255, 255, 255, 0.08);
+    border-bottom-color: rgba(75, 85, 99, 0.7);
+}
+
+.dark .prose td {
+    color: #d1d5db;
+    border-bottom-color: rgba(55, 65, 81, 0.8);
+}
+
+/* ==========================================================================
+   6. Glassmorphism Flowchart Styles (IMPROVED & FIXED)
+   ========================================================================== */
+
+/* Flowchart container */
+.flowchart {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem; 
+    padding: 2rem 0;
+}
+
+/* Base style for all flowchart nodes (FIX: More liquid & round) */
+.flowchart-node {
+    padding: 1.25rem 2rem;
+    border-radius: 1.5rem; /* Made more round */
+    font-weight: 600;
+    text-align: center;
+    min-width: 150px;
+    
+    /* Enhanced Liquid Glassmorphism Effect */
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.25));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    box-shadow:
+        inset 0 2px 2px rgba(255, 255, 255, 0.75), /* Brighter inner highlight */
+        0 10px 25px rgba(31, 38, 135, 0.2);
+    
+    transition: all 0.3s ease;
+}
+
+.flowchart-node:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow:
+        inset 0 2px 2px rgba(255, 255, 255, 0.75),
+        0 12px 30px rgba(31, 38, 135, 0.25);
+}
+
+/* Style for decision nodes */
+.flowchart-node.decision {
+    border-radius: 1.5rem; 
+    border-style: dashed;
+    border-width: 2px;
+}
+
+/* Style for connectors/arrows */
+.flowchart-connector {
+    font-size: 2rem;
+    font-weight: bold;
+    color: rgba(63, 63, 70, 0.6);
+    transition: color 0.4s ease;
+}
+
+/* Dark Mode Flowchart Styles (FIX: Adjusted for liquid glass effect) */
+.dark .flowchart-node {
+    color: #f4f4f5;
+    background: linear-gradient(145deg, rgba(80, 80, 85, 0.5), rgba(40, 40, 42, 0.3));
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow:
+        inset 0 2px 2px rgba(255, 255, 255, 0.1), 
+        0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.dark .flowchart-node:hover {
+    background: linear-gradient(145deg, rgba(90, 90, 95, 0.6), rgba(50, 50, 52, 0.4));
+    box-shadow:
+        inset 0 2px 2px rgba(255, 255, 255, 0.1),
+        0 12px 30px rgba(0, 0, 0, 0.4);
+}
+
+.dark .flowchart-connector {
+    color: rgba(161, 161, 170, 0.7);
+}
+
+
+/* ==========================================================================
+   7. Additional Glassmorphism Components (NEW)
+   ========================================================================== */
+
+/* --- Sticky Header / Navbar --- */
+.sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    width: 100%;
+    padding: 1rem 2rem;
+    
+    background: rgba(245, 247, 250, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: all 0.4s ease;
+}
+
+.dark .sticky-header {
+    background: rgba(35, 37, 38, 0.7);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* --- Modal / Pop-up --- */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    padding: 2rem;
+    border-radius: 1rem;
+    min-width: 300px;
+    max-width: 90vw;
+    
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 10px 40px rgba(31, 38, 135, 0.25);
+}
+
+.dark .modal-content {
+    background: rgba(50, 50, 52, 0.5);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* --- Form Inputs --- */
+.form-input-glass {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    
+    background: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    color: #27272a;
+    transition: all 0.3s ease;
+}
+
+.form-input-glass::placeholder {
+    color: rgba(63, 63, 70, 0.6);
+}
+
+.form-input-glass:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.5);
+    border-color: rgba(99, 102, 241, 0.8);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+.dark .form-input-glass {
+    background: rgba(63, 63, 70, 0.5);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #e4e4e7;
+}
+
+.dark .form-input-glass::placeholder {
+    color: rgba(161, 161, 170, 0.6);
+}
+
+.dark .form-input-glass:focus {
+    background: rgba(82, 82, 91, 0.6);
+    border-color: rgba(129, 140, 248, 0.8);
+    box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.2);
+}
